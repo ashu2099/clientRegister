@@ -7,7 +7,7 @@ declare let $: any;
 })
 export class RegisterDataService {
   constructor() {
-    this.data["userID"] = "asd";
+    //this.data["userID"] = "asd";
   }
 
   private ALL_POLICIES = [];
