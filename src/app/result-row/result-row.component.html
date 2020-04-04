@@ -1,0 +1,75 @@
+<div class="card mb-2">
+  <div class="card-body py-2">
+    <div class="row">
+      <div
+        class="col-12 col-sm-6 my-2 transit"
+        [ngClass]="{
+          'col-md-4 col-lg-3': displayFold,
+          'col-md-5 col-lg-4': !displayFold
+        }"
+      >
+        <label class="mb-0">Customer Name</label>
+        <p class="mb-0">{{ policy.customerName }}</p>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+        <label class="mb-0">Vehicle Number</label>
+        <p class="mb-0 text-uppercase">{{ policy.vehicleNumber }}</p>
+      </div>
+
+      <div
+        class="col-12 col-sm-6 my-2 transit"
+        [ngClass]="{
+          'col-md-4 col-lg-3': displayFold,
+          'col-md-3 col-lg-2': !displayFold
+        }"
+      >
+        <label class="mb-0">Date Of Expiry</label>
+        <p class="mb-0">{{ policy.dateOfExpiry }}</p>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2" *ngIf="displayFold">
+        <label class="mb-0">Policy Number</label>
+        <p class="mb-0">{{ policy.policyNumber }}</p>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2" *ngIf="displayFold">
+        <label class="mb-0">Phone Number</label>
+        <p class="mb-0">{{ policy.phoneNumber }}</p>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2" *ngIf="displayFold">
+        <label class="mb-0">Date Of Inception</label>
+        <p class="mb-0">{{ policy.dateOfInception }}</p>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2" *ngIf="displayFold">
+        <label class="mb-0">Company Name</label>
+        <p class="mb-0">{{ policy.companyName }}</p>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2" *ngIf="displayFold">
+        <label class="mb-0">Vehicle Type</label>
+        <p class="mb-0">{{ policy.vehicleType }}</p>
+      </div>
+
+      <div class="col text-right d-flex align-items-center justify-content-end">
+        <button type="button" class="btn btn-theme mr-1" (click)="toggleFold()">
+          {{ toggleText }}
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-theme mr-1"
+          (click)="viewDocument()"
+        >
+          Doc
+        </button>
+
+        <button type="button" class="btn btn-theme mr-1" (click)="editPolicy()">
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

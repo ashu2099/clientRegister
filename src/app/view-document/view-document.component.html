@@ -1,0 +1,25 @@
+<app-modal-base modalId="viewDocumentModal" modalSize="xl">
+  <h1 class="display-5" header>Policy</h1>
+
+  <div body>
+    <div class="col-12" *ngIf="fileData && type == 'IMG'">
+      <img class="img-fluid" [src]="fileData" />
+    </div>
+    <div
+      class="col-12"
+      *ngIf="fileData && type == 'PDF' && showObject"
+      style="height:60vh"
+    >
+      <object class="w-100 h-100" [attr.data]="fileData"></object>
+    </div>
+  </div>
+
+  <div footer>
+    <a [attr.href]="fileData" class="btn btn-theme" download="uploadedPolicy">
+      Download
+    </a>
+    <button type="button" class="btn btn-theme ml-2" (click)="closeDoc()">
+      Close
+    </button>
+  </div>
+</app-modal-base>

@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-12 mb-3">
+    <div class="card">
+      <div class="card-header text-center text-sm-left">
+        <h3 class="display-5 d-sm-inline-block">Search Policy</h3>
+
+        <div
+          class="custom-control custom-checkbox d-inline-block float-sm-right mt-3"
+        >
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="isRangeSearch"
+            (change)="manipulateRangeDiv()"
+          />
+          <label class="custom-control-label" for="isRangeSearch"
+            >Range search for Renewals ?</label
+          >
+        </div>
+      </div>
+      <div class="card-body" id="searchCardBody">
+        <app-policy-pojo
+          [submitClicked]="submitClicked"
+          [formMode]="'search'"
+          (pojoChange)="setNewPojo($event)"
+        ></app-policy-pojo>
+        <div class="form-group col-12">
+          <button
+            class="btn btn-theme w-25 d-block m-auto"
+            (click)="startSearch()"
+          >
+            Search
+          </button>
+          <div class="invalid-feedback text-center d-block" *ngIf="formEmpty">
+            Please enter at least one value to search by.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 mb-3" *ngIf="resultSet && resultSet.length">
+    <div class="text-center text-sm-left">
+      <h1 class="display-4 text-white d-sm-inline-block">Search Results</h1>
+      <button
+        class="btn btn-outline-light float-sm-right mt-sm-3 mb-2"
+        (click)="sortResultSetByExpiryDate()"
+      >
+        Sort By Expiry Date
+      </button>
+    </div>
+    <ng-container *ngFor="let x of resultSet">
+      <app-result-row [policy]="x"></app-result-row>
+    </ng-container>
+  </div>
+
+  <div class="col-12 mb-3" *ngIf="resultSet && !resultSet.length">
+    <h1 class="display-4 text-white">No Matches Found.</h1>
+  </div>
+</div>

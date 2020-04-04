@@ -1,0 +1,18 @@
+.navbar, .navbar-brand {
+    transition: 0.5s;
+  }
+  
+  .navbar-big {
+    padding: 0.75rem;
+    .navbar-brand {
+      font-size: 1.75rem;
+    }
+  }
+
+.top-margin{
+    margin-top:96px;
+}
+
+.nav-link.active{
+  border-bottom:2px solid white;
+}

@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-12 mb-3">
+    <div class="card">
+      <div class="card-header text-center text-sm-left">
+        <h3 class="display-5 d-inline-block">Amend Policy</h3>
+        <button
+          type="button"
+          class="btn btn-theme float-sm-right"
+          (click)="openDocument()"
+        >
+          View Uploaded Document
+        </button>
+      </div>
+      <div class="card-body">
+        <app-policy-pojo
+          [submitClicked]="submitClicked"
+          [formMode]="'amend'"
+          [oldData]="oldData"
+          (pojoChange)="setData($event)"
+        ></app-policy-pojo>
+        <div class="form-group col-12">
+          <button
+            class="btn btn-theme w-25 d-block m-auto"
+            (click)="amendPolicy()"
+          >
+            Amend
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

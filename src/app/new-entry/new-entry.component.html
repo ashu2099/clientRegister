@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-12 mb-3">
+    <div class="card">
+      <div class="card-header text-center text-sm-left">
+        <h3 class="display-5 d-inline-block">
+          Add Policy
+        </h3>
+        <button
+          type="button"
+          *ngIf="uploadedFile"
+          class="btn btn-theme float-sm-right"
+          (click)="openDocument()"
+        >
+          View Uploaded Document
+        </button>
+      </div>
+      <div class="card-body">
+        <app-policy-pojo
+          [submitClicked]="submitClicked"
+          [formMode]="'add'"
+          (pojoChange)="setData($event)"
+        ></app-policy-pojo>
+        <div class="form-group col-12">
+          <button
+            class="btn btn-theme w-25 d-block m-auto"
+            (click)="makeNewEntry()"
+          >
+            Add Policy
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-modal-base modalId="renewalPromptModal" modalSize="modal-sm">
+  <div header>
+    <h1 class="display-5 color-theme">Attention !</h1>
+  </div>
+
+  <div body>
+    <span class="color-theme">
+      The Vehicle Number that you are trying to add already Exists in the
+      system. Are you adding a RENEWAL of a policy and would you like to update
+      it in the system and delete the older one?
+    </span>
+  </div>
+
+  <div footer>
+    <button type="button" class="btn btn-theme" (click)="promptedYes()">
+      Yes</button
+    ><button type="button" class="btn btn-theme ml-2" (click)="promptedNo()">
+      No
+    </button>
+  </div>
+</app-modal-base>
