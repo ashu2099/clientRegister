@@ -2,18 +2,19 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class RegisterApiService {
   constructor(private http: HttpClient) {}
 
   private POLICIES = this.getServerUrl() + "policies";
   private POLICY_FILES = this.getServerUrl() + "policyFiles";
+  private FILE_STORAGE =
+    "https://firebasestorage.googleapis.com/v0/b/clientregisterdb.appspot.com/o/policyFiles%2F";
   private FECTH_VEHICLE =
     this.getServerUrl() + 'policies.json?orderBy="vehicleNumber"&equalTo=';
 
   getServerUrl() {
-    //return "fuckyou";
     return "https://clientregisterdb.firebaseio.com/";
   }
 
@@ -31,12 +32,12 @@ export class RegisterApiService {
   }
 
   addPolicyFile(policyNumber, imageData) {
-    let URL = this.POLICY_FILES + "/" + policyNumber + ".json";
-    return this.http.put(URL, { base64: imageData });
+    let URL = this.FILE_STORAGE + policyNumber + ".json?uploadType=media";
+    return this.http.post(URL, { base64: imageData });
   }
 
-  fetchPolicyFile(fireID) {
-    let URL = this.POLICY_FILES + "/" + fireID + ".json";
+  fetchPolicyFile(policyNumber) {
+    let URL = this.FILE_STORAGE + policyNumber + ".json?alt=media";
     return this.http.get(URL);
   }
 
