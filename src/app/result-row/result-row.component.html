@@ -25,7 +25,7 @@
         }"
       >
         <label class="mb-0">Date Of Expiry</label>
-        <p class="mb-0">{{ policy.dateOfExpiry }}</p>
+        <p class="mb-0">{{ policy.dateOfExpiry | date: "mediumDate" }}</p>
       </div>
 
       <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2" *ngIf="displayFold">
@@ -40,7 +40,7 @@
 
       <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2" *ngIf="displayFold">
         <label class="mb-0">Date Of Inception</label>
-        <p class="mb-0">{{ policy.dateOfInception }}</p>
+        <p class="mb-0">{{ policy.dateOfInception | date: "mediumDate" }}</p>
       </div>
 
       <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2" *ngIf="displayFold">
