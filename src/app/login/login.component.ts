@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   submitLogin(a) {
-    if ((this.RDS.get("users")[this.userName] = this.password)) {
+    if ((this.RDS.get("users")[this.userName] == this.password)) {
       this.router.navigate(["app/home"]);
       this.RDS.set("userID", this.userName);
     } else {
