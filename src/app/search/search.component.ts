@@ -106,7 +106,6 @@ export class SearchComponent implements OnInit {
       } else if (this.formStatus == "VALID") {
         this.RDS.displayLoader();
         this.resultSet = this.searchPolicies();
-        console.log(this.resultSet);
         this.RDS.smoothScrollDocument("#searchCardBody");
         this.RDS.removeLoader();
       }
