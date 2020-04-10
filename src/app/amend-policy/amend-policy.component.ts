@@ -47,6 +47,13 @@ export class AmendPolicyComponent implements OnInit {
     if (this.formStatus == "VALID") {
       this.RDS.displayLoader();
 
+      if (this.RDS.checkStranger()) {
+        this.RDS.triggerError(
+          "This User is not authorized to mutate the database. It holds search previlages only."
+        );
+        return undefined;
+      }
+
       this.apiHandler.addPolicy(this.userData).subscribe(
         (outerResponse) => {
           if (this.uploadedFile) {

@@ -1,18 +1,28 @@
-.navbar, .navbar-brand {
-    transition: 0.5s;
-  }
-  
-  .navbar-big {
-    padding: 0.75rem;
-    .navbar-brand {
-      font-size: 1.75rem;
-    }
-  }
-
-.top-margin{
-    margin-top:96px;
+.navbar,
+.navbar-brand,
+.logo-img {
+  transition: 0.5s;
 }
 
-.nav-link.active{
-  border-bottom:2px solid white;
+.navbar-big {
+  padding: 0.75rem;
+  .navbar-brand {
+    font-size: 1.6rem;
+  }
+
+  .logo-img {
+    width: 30px !important;
+  }
+}
+
+.top-margin {
+  margin-top: 96px;
+}
+
+.nav-link.active {
+  border-bottom: 2px solid white;
+}
+
+.logo-img {
+  width: 20px;
 }

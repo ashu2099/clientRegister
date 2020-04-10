@@ -17,7 +17,9 @@ export class RegisterDataService {
     users: {
       shakti: "1234",
       papa: "papa1234",
+      stranger: "1234",
     },
+    superUsers: ["shakti", "papa"],
   };
 
   get(key) {
@@ -36,6 +38,17 @@ export class RegisterDataService {
     if (typeof input == "object") {
       this.ALL_POLICIES = Object.values(input);
     }
+  }
+
+  checkStranger() {
+    if (
+      this.data["userID"] &&
+      this.data.superUsers.indexOf(this.data["userID"]) != -1
+    ) {
+      return false;
+    }
+
+    return true;
   }
 
   displayLoader() {
@@ -69,7 +82,7 @@ export class RegisterDataService {
 
   purgeData() {
     for (let key in this.data) {
-      if (key != "viewDocEvent" && key != "users") {
+      if (key != "viewDocEvent" && key != "users" && key != "superUsers") {
         delete this.data[key];
       }
     }

@@ -7,7 +7,7 @@ declare const $: any;
 @Component({
   selector: "app-new-entry",
   templateUrl: "./new-entry.component.html",
-  styleUrls: ["./new-entry.component.scss"]
+  styleUrls: ["./new-entry.component.scss"],
 })
 export class NewEntryComponent implements OnInit {
   constructor(
@@ -41,9 +41,17 @@ export class NewEntryComponent implements OnInit {
     this.submitClicked = true;
     if (this.formStatus == "VALID" && this.uploadedFile) {
       this.RDS.displayLoader();
+
+      if (this.RDS.checkStranger()) {
+        this.RDS.triggerError(
+          "This User is not authorized to mutate the database. It holds search previlages only."
+        );
+        return undefined;
+      }
+
       this.apiHandler
         .fetchPolicyByNumber(this.userData.policyNumber)
-        .subscribe(checkResponse => {
+        .subscribe((checkResponse) => {
           if (checkResponse == null) {
             if (this.userData.vehicleNumber) {
               this.checkIfVehicleExists();
@@ -62,7 +70,7 @@ export class NewEntryComponent implements OnInit {
   checkIfVehicleExists() {
     this.apiHandler
       .fetchByVehicleNumber(this.userData.vehicleNumber)
-      .subscribe(response => {
+      .subscribe((response) => {
         response = Object.values(response)[0];
         if (response && response["vehicleNumber"]) {
           this.oldPolicyNumberForExistingVehicle = response["policyNumber"];
@@ -74,17 +82,17 @@ export class NewEntryComponent implements OnInit {
   }
 
   addPolicy() {
-    this.apiHandler.addPolicy(this.userData).subscribe(outerResponse => {
+    this.apiHandler.addPolicy(this.userData).subscribe((outerResponse) => {
       this.apiHandler
         .addPolicyFile(outerResponse["policyNumber"], this.uploadedFile)
         .subscribe(
-          innerResponse => {
+          (innerResponse) => {
             if (this.oldPolicyNumberForExistingVehicle) {
               this.removePreviousPolicy(this.oldPolicyNumberForExistingVehicle);
             }
             this.RDS.triggerOK("Policy Added Successfully");
           },
-          innerError => {
+          (innerError) => {
             this.RDS.triggerError(
               `Policy Upload Failed. 
                 Please search for this policy number 
@@ -113,15 +121,15 @@ export class NewEntryComponent implements OnInit {
   removePreviousPolicy(policyNumber) {
     this.oldPolicyNumberForExistingVehicle = "";
     this.apiHandler.deletePolicy(policyNumber).subscribe(
-      response => {
+      (response) => {
         this.apiHandler.deletePolicyFile(policyNumber).subscribe(
           () => {},
-          error => {
+          (error) => {
             this.handleAPIError(policyNumber);
           }
         );
       },
-      error => {
+      (error) => {
         this.handleAPIError(policyNumber);
       }
     );
